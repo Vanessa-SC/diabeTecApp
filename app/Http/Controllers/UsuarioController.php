@@ -7,7 +7,7 @@ use App\Usuario;
 
 class UsuarioController extends Controller
 {
-    public function login($contra, $email){
+    public function login($email, $contra){
         try{
            $uc = new UsuarioController;
             $correoExiste = $uc->comprobarCorreo($email);
