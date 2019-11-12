@@ -15,7 +15,7 @@ class Peso extends Migration
     {
         Schema::create('PESO', function (Blueprint $table) {
             $table->bigIncrements('idPeso');
-            $table->string('peso');
+            $table->string('peso',5);
             $table->date('fecha');
             $table->time('hora');
             $table->string('nota',120);

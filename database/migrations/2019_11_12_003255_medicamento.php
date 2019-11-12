@@ -15,8 +15,8 @@ class Medicamento extends Migration
     {
         Schema::create('MEDICAMENTO', function (Blueprint $table) {
             $table->bigIncrements('idMedicamento');
-            $table->string('descripcion');
-            $table->string('dosis');
+            $table->string('descripcion',100);
+            $table->string('dosis',45);
             $table->time('hora');
             $table->string('nota',120);
             $table->integer('idUsuario');

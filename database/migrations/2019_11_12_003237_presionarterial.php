@@ -15,9 +15,9 @@ class Presionarterial extends Migration
     {
         Schema::create('PRESIONARTERIAL', function (Blueprint $table) {
             $table->bigIncrements('idPresionArterial');
-            $table->string('sistolica');
-            $table->string('diastolica');
-            $table->string('pulso');
+            $table->string('sistolica',10);
+            $table->string('diastolica',10);
+            $table->string('pulso',10);
             $table->date('fecha');
             $table->time('hora');
             $table->string('nota',120);

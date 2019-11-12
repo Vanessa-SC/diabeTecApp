@@ -15,12 +15,12 @@ class Usuario extends Migration
     {
         Schema::create('USUARIO', function (Blueprint $table) {
             $table->Increments('idUsuario');
-            $table->string('nombre');
+            $table->string('nombre',60);
             $table->string('telefono',14);
             $table->string('email',80)->unique();
-            $table->string('contrasena');
-            $table->string('sexo');
-            $table->string('tipoDiabetes');
+            $table->string('contrasena',60);
+            $table->string('sexo',45);
+            $table->string('tipoDiabetes',45);
             $table->date('fecha_nac');
             $table->engine = 'InnoDB';	
         });

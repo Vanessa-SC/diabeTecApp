@@ -44,4 +44,29 @@ class UsuarioController extends Controller
         } 
     }
 
+    public function registrar($nombre,$telefono,$email,$contra,$sexo,$tipoDiab,$fechaNac){
+        try{
+            $buscar = Usuario::where('email', $email)->first();
+            //nombre'telefono'email'contrasena'sexo''tipoDiabetes'fecha_nac');
+            if($buscar == null){
+                $usuario = Usuario::insert(['nombre'=>$nombre, 'telefono'=>$telefono,'email'=>$email,'contrasena'=>$contra,'sexo'=>$sexo,'tipoDiabetes'=>$tipoDiab,'fecha_nac'=>$fechaNac]);
+                if($usuario == 1){
+                    $arr = array('resultado' => "insertado");
+                    echo json_encode($arr);
+                } else {
+                    $arr = array('resultado' => "no insertado");
+                    echo json_encode($arr);
+                }
+            } else {
+                    $arr = array('resultado' => 'Correo ya existe');
+                    echo json_encode($arr);
+                }
+
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('estado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
 }

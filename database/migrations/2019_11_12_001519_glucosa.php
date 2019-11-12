@@ -15,7 +15,7 @@ class Glucosa extends Migration
     {
         Schema::create('GLUCOSA', function (Blueprint $table) {
             $table->bigIncrements('idGlucosa');
-            $table->string('toma');
+            $table->string('toma',45);
             $table->date('fecha');
             $table->time('hora');
             $table->string('nota',130);
