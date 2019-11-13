@@ -8,7 +8,7 @@ use App\Medicamento;
 class MedicamentoController extends Controller
 {
     //,unidades,medicamento,hora,fecha,recordatorio,notas,idUsuario
-    public function agregarM($dosis,$descripcion,$hora,$fecha,$recordatorio,$nota,$idUsuario){
+    public function agregarM($dosis,$descripcion,$hora,$fecha,$recordatorio,$notas,$idUsuario){
         try{
             //$notas = "recordatorio: "+$recordatorio+", notas: "+$nota;
 
