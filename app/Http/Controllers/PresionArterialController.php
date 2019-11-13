@@ -10,7 +10,7 @@ class PresionArterialController extends Controller
     //,sistolica,diastolica,pulso,fecha,hora,recordatorio,notas,,idUsuario
     public function agregarPA($sistolica,$diastolica,$pulso,$fecha,$hora,$recordatorio,$nota,$idUsuario){
         try{
-            $notas = "recordatorio: "+$recordatorio+", notas: "+$nota;
+            //$notas = "recordatorio: "+$recordatorio+", notas: "+$nota;
 
             $PresionArterial = PresionArterial::insert(['sistolica'=>$sistolica,'diastolica'=>$diastolica,'pulso'=>$pulso,'fecha'=>$fecha,'hora'=>$hora,'nota'=>$nota,'idUsuario'=>$idUsuario]);
 
