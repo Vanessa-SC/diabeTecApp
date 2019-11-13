@@ -8,11 +8,11 @@ use App\PresionArterial;
 class PresionArterialController extends Controller
 {
     //,sistolica,diastolica,pulso,fecha,hora,recordatorio,notas
-    public function agregarPA($sistolica,$diastolica,$pulso,$fecha,$hora,$recordatorio,$nota){
+    public function agregarPA($sistolica,$diastolica,$pulso,$fecha,$hora,$recordatorio,$nota,$idUsuario){
         try{
             $notas = "recordatorio: "+$recordatorio+", notas: "+$nota;
 
-            $PresionArterial = PresionArterial::insert([$sistolica,$diastolica,$pulso,$fecha,$hora,$recordatorio,$nota]);
+            $PresionArterial = PresionArterial::insert(['sistolica'=>$sistolica,'diastolica'=>$diastolica,'pulso'=>$pulso,'fecha'=>$fecha,'hora'=>$hora,'nota'=>$nota,'idUsuario'=>$idUsuario]);
 
             if($PresionArterial == 1){
                 $arr = array('resultado' => "insertado");

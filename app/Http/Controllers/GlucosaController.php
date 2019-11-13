@@ -8,12 +8,12 @@ use App\Glucosa;
 class GlucosaController extends Controller
 {
     //,glucosa,hora,fecha,periodo,actividad,medicacion,recordatorio,notas
-    public function agregarG($glucosa,$hora,$fecha,$periodo,$actividad,$medicacion,$recordatorio,$nota){
+    public function agregarG($glucosa,$hora,$fecha,$periodo,$actividad,$medicacion,$recordatorio,$nota,$idUsuario){
         try{
             
-            $notas = "periodo: "+$periodo+", actividad: "+$actividad+", medicacion: "+$medicacion+", recordatorio: "+$recordatorio+", adicional: "+$nota;
+            //$notas = "periodo: "+$periodo+", actividad: "+$actividad+", medicacion: "+$medicacion+", recordatorio: "+$recordatorio+", adicional: "+$nota;
 
-            $glucosa = Glucosa::insert(['toma'=>$glucosa,'hora'=>$hora,'fecha'=>$fecha,''=>$recordatorio,'nota'=>$notas]);
+            $glucosa = Glucosa::insert(['toma'=>$glucosa,'hora'=>$hora,'fecha'=>$fecha,'nota'=>$nota,'idUsuario'=>$idUsuario]);
 
             if($glucosa == 1){
                 $arr = array('resultado' => "agregada");

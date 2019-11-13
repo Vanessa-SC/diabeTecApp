@@ -8,9 +8,9 @@ use App\Peso;
 class PesoController extends Controller
 {
     //peso,hora,fecha,notas
-    public function agregarP($peso,$hora,$fecha,$notas){
+    public function agregarP($peso,$hora,$fecha,$notas,$idUsuario){
         try{
-            $Peso = Peso::insert(['peso'=>$peso,'hora'=>$hora,'fecha'=>$fecha,'notas'=>$notas]);
+            $Peso = Peso::insert(['peso'=>$peso,'hora'=>$hora,'fecha'=>$fecha,'notas'=>$notas,'idUsuario'=>$idUsuario]);
             if($Peso == 1){
                 $arr = array('resultado' => "insertado");
                 echo json_encode($arr);
