@@ -23,3 +23,4 @@ Route::get('agregarPA/{sistolica}/{diastolica}/{pulso}/{fecha}/{hora}/{recordato
 //MEDICAMENTO
 Route::get('agregarM/{dosis}/{descripcion}/{hora}/{fecha}/{recordatorio}/{notas}/{idUsuario}',['uses'=> 'MedicamentoController@agregarM']);
 
+
