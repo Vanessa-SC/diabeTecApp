@@ -7,7 +7,7 @@ use App\PresionArterial;
 
 class PresionArterialController extends Controller
 {
-    //,sistolica,diastolica,pulso,fecha,hora,recordatorio,notas
+    //,sistolica,diastolica,pulso,fecha,hora,recordatorio,notas,,idUsuario
     public function agregarPA($sistolica,$diastolica,$pulso,$fecha,$hora,$recordatorio,$nota,$idUsuario){
         try{
             $notas = "recordatorio: "+$recordatorio+", notas: "+$nota;

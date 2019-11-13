@@ -7,7 +7,7 @@ use App\Glucosa;
 
 class GlucosaController extends Controller
 {
-    //,glucosa,hora,fecha,periodo,actividad,medicacion,recordatorio,notas
+    //,glucosa,hora,fecha,periodo,actividad,medicacion,recordatorio,notas,idUsuario
     public function agregarG($glucosa,$hora,$fecha,$periodo,$actividad,$medicacion,$recordatorio,$nota,$idUsuario){
         try{
             

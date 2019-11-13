@@ -7,7 +7,7 @@ use App\Peso;
 
 class PesoController extends Controller
 {
-    //peso,hora,fecha,notas
+    //peso,hora,fecha,notas,,idUsuario
     public function agregarP($peso,$hora,$fecha,$notas,$idUsuario){
         try{
             $Peso = Peso::insert(['peso'=>$peso,'hora'=>$hora,'fecha'=>$fecha,'notas'=>$notas,'idUsuario'=>$idUsuario]);
