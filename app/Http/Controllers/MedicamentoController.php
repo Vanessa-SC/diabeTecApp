@@ -8,9 +8,9 @@ use App\Medicamento;
 class MedicamentoController extends Controller
 {
     //,unidades,medicamento,hora,fecha,recordatorio,notas,idUsuario
-    public function agregarM($dosis,$descripcion,$hora,$fecha,$recordatorio,$notas,$idUsuario){
+    public function agregarM($dosis,$descripcion,$hora,$fecha,$recordatorio,$nota,$idUsuario){
         try{
-            $notas = "recordatorio: "+$recordatorio+", notas: "+$nota;
+            //$notas = "recordatorio: "+$recordatorio+", notas: "+$nota;
 
             $medicamento = Medicamento::insert(['dosis'=>$dosis,'descripcion'=>$descripcion,'hora'=>$hora,'fecha'=>$fecha,'nota'=>$notas,'idUsuario'=>$idUsuario]);
 
