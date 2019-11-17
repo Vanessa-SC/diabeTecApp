@@ -8,9 +8,15 @@ use App\Medicamento;
 class MedicamentoController extends Controller
 {
     //,unidades,medicamento,hora,fecha,recordatorio,notas,idUsuario
-    public function agregarM($dosis,$descripcion,$hora,$fecha,$recordatorio,$notas,$idUsuario){
+    public function agregarM($dosis,$descripcion,$hora1,$fecha1,$recordatorio,$nota,$idUsuario){
         try{
-            //$notas = "recordatorio: "+$recordatorio+", notas: "+$nota;
+
+            $oldFecha = substr($fecha1, 0, -6);
+            $fecha = date('Y-m-d', strtotime($oldFecha));
+            $oldHora = substr($hora1, 0, -6);
+            $hora = date('h:i A', strtotime($oldHora));
+            
+            $notas = "recordatorio: ".$recordatorio.", notas: ".$nota;
 
             $medicamento = Medicamento::insert(['dosis'=>$dosis,'descripcion'=>$descripcion,'hora'=>$hora,'fecha'=>$fecha,'nota'=>$notas,'idUsuario'=>$idUsuario]);
 
@@ -28,4 +34,37 @@ class MedicamentoController extends Controller
             echo json_encode($arr);
         }
     }
+
+    public function mostrarM($idUsuario){
+        try{
+            $medicamentos = Medicamento::where('idUsuario','=',$idUsuario)->get();
+            echo $medicamentos;
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('resultado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
+    /*
+    $promedio = DB::table('glucosa')
+            ->where('idUsuario','=',$idUsuario)
+            ->avg('toma');
+            $ultima = DB::table('glucosa')
+            ->select('toma as ultima')
+            ->where('idUsuario','=',$idUsuario)
+            ->orderBy('idGlucosa', 'desc')
+            ->pluck('ultima')
+            ->first();
+            
+    */
+    public function fecha(){
+        $oldFecha = substr('2019-11-13T17:56:39.065-06:00', 0, -6);
+        $fecha = date('Y-m-d', strtotime($oldFecha));
+        echo $fecha;
+        $oldHora = substr('2019-11-13T17:56:39.065-06:00', 0, -6);
+        $hora = date('h:i A', strtotime($oldHora));
+        echo $hora;
+    }
+
 }

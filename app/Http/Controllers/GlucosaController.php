@@ -9,12 +9,16 @@ use DB;
 class GlucosaController extends Controller
 {
     //,glucosa,hora,fecha,periodo,actividad,medicacion,recordatorio,notas,idUsuario
-    public function agregarG($glucosa,$hora,$fecha,$periodo,$actividad,$medicacion,$recordatorio,$nota,$idUsuario){
+    public function agregarG($glucosa,$hora1,$fecha1,$periodo,$actividad,$medicacion,$recordatorio,$nota,$idUsuario){
         try{
-            
-            //$notas = "periodo: "+$periodo+", actividad: "+$actividad+", medicacion: "+$medicacion+", recordatorio: "+$recordatorio+", adicional: "+$nota;
+            $oldFecha = substr($fecha1, 0, -6);
+            $fecha = date('Y-m-d', strtotime($oldFecha));
+            $oldHora = substr($hora1, 0, -6);
+            $hora = date('h:i A', strtotime($oldHora));
 
-            $glucosa = Glucosa::insert(['toma'=>$glucosa,'hora'=>$hora,'fecha'=>$fecha,'nota'=>$nota,'idUsuario'=>$idUsuario]);
+            $notas = "periodo: ".$periodo.", actividad: ".$actividad.", medicacion: ".$medicacion.", recordatorio: ".$recordatorio.", adicional: ".$nota;
+
+            $glucosa = Glucosa::insert(['toma'=>$glucosa,'hora'=>$hora,'fecha'=>$fecha,'nota'=>$notas,'idUsuario'=>$idUsuario]);
 
             if($glucosa == 1){
                 $arr = array('resultado' => "agregada");
@@ -48,7 +52,7 @@ class GlucosaController extends Controller
             $promedio = DB::table('glucosa')
             ->where('idUsuario','=',$idUsuario)
             ->avg('toma');
-            $arr = array('promedio' => $promedio, $ultimaG);
+            $arr = array('promedio' => $promedio);
             echo json_encode($arr);
            // echo $promedio;
         } catch(\Illuminate\Database\QueryException $e){
