@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Peso;
+use DB;
 
 class PesoController extends Controller
 {
@@ -15,7 +16,7 @@ class PesoController extends Controller
             $oldHora = substr($hora1, 0, -6);
             $hora = date('h:i A', strtotime($oldHora));
             
-            $Peso = Peso::insert(['peso'=>$peso,'hora'=>$hora,'fecha'=>$fecha,'notas'=>$notas,'idUsuario'=>$idUsuario]);
+            $Peso = Peso::insert(['peso'=>$peso,'hora'=>$hora,'fecha'=>$fecha,'nota'=>$notas,'idUsuario'=>$idUsuario]);
             if($Peso == 1){
                 $arr = array('resultado' => "insertado");
                 echo json_encode($arr);
@@ -35,6 +36,34 @@ class PesoController extends Controller
         try{
             $pesos = Peso::where('idUsuario','=',$idUsuario)->get();
             echo $pesos;
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('resultado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
+    public function mostrarPEst($idUsuario){
+        try{
+            
+            $promedio = DB::table('peso')
+            ->where('idUsuario','=',$idUsuario)
+            ->avg('peso');
+
+            $max = DB::table('peso')
+            ->where('idUsuario','=',$idUsuario)
+            ->max('peso');
+
+            $min = DB::table('peso')
+            ->where('idUsuario','=',$idUsuario)
+            ->min('peso');
+
+            if($promedio == null){ $promedio = 0;}
+            if($max == null){ $max = 0;}
+            if($min == null){ $min = 0;}
+
+            $arr = array('pesoProm' => $promedio,'pesoMax' => $max,'pesoMin'=>$min);
+            echo json_encode($arr);
         } catch(\Illuminate\Database\QueryException $e){
             $errorCore = $e->getMessage();
             $arr = array('resultado' => $errorCore);

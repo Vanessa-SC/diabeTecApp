@@ -20,6 +20,8 @@ Route::get('mostrarG/{idUsuario}', ['uses' => 'GlucosaController@mostrarG']);
 
 //PESO
 Route::get('agregarP/{peso}/{hora}/{fecha}/{notas}/{idUsuario}',['uses'=> 'PesoController@agregarP']);
+Route::get('mostrarP/{idUsuario}',['uses'=> 'PesoController@mostrarP']);
+Route::get('mostrarPEst/{idUsuario}',['uses'=> 'PesoController@mostrarPEst']);
 
 //PRESION ARTERIAL
 Route::get('agregarPA/{sistolica}/{diastolica}/{pulso}/{fecha}/{hora}/{recordatorio}/{nota}/{idUsuario}',['uses'=> 'PresionArterialController@agregarPA']);
