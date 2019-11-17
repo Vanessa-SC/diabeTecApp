@@ -31,4 +31,15 @@ class PesoController extends Controller
         }
     }
 
+    public function mostrarP($idUsuario){
+        try{
+            $pesos = Peso::where('idUsuario','=',$idUsuario)->get();
+            echo $pesos;
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('resultado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
 }

@@ -16,16 +16,21 @@ Route::get('agregarG/{glucosa}/{hora}/{fecha}/{periodo}/{actividad}/{medicacion}
 Route::get('ultimaGlucosa/{idUsuario}', ['uses' => 'GlucosaController@ultimaGlucosa']);
 Route::get('promedioGlucosa/{idUsuario}', ['uses' => 'GlucosaController@glucosaPromedio']);
 Route::get('glucosaAvgUlt/{idUsuario}', ['uses' => 'GlucosaController@glucosaAvgUlt']);
+Route::get('mostrarG/{idUsuario}', ['uses' => 'GlucosaController@mostrarG']);
 
 //PESO
 Route::get('agregarP/{peso}/{hora}/{fecha}/{notas}/{idUsuario}',['uses'=> 'PesoController@agregarP']);
 
 //PRESION ARTERIAL
 Route::get('agregarPA/{sistolica}/{diastolica}/{pulso}/{fecha}/{hora}/{recordatorio}/{nota}/{idUsuario}',['uses'=> 'PresionArterialController@agregarPA']);
+Route::get('mostrarPA/{idUsuario}', ['uses' => 'PresionArterialController@mostrarPA']);
 
 //MEDICAMENTO
 Route::get('agregarM/{dosis}/{descripcion}/{hora}/{fecha}/{recordatorio}/{notas}/{idUsuario}',['uses'=> 'MedicamentoController@agregarM']);
 Route::get('mostrarM/{idUsuario}', ['uses' => 'MedicamentoController@mostrarM']);
+
+
+//PRUEBAS
 Route::get('fecha/{idUsuario}', ['uses' => 'MedicamentoController@fecha']);
 
 

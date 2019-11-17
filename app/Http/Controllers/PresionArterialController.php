@@ -34,4 +34,15 @@ class PresionArterialController extends Controller
         }
     }
 
+    public function mostrarPA($idUsuario){
+        try{
+            $presiones = PresionArterial::where('idUsuario','=',$idUsuario)->get();
+            echo $presiones;
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('resultado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
 }

@@ -84,4 +84,15 @@ class GlucosaController extends Controller
         }
     }
 
+    public function mostrarG($idUsuario){
+        try{
+            $glucosas = Glucosa::where('idUsuario','=',$idUsuario)->get();
+            echo $glucosas;
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('resultado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
 }
