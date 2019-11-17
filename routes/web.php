@@ -13,6 +13,9 @@ Route::get('registro/{nombre}/{telefono}/{email}/{contra}/{sexo}/{tipoDiab}/{fec
 
 //GLUCOSA
 Route::get('agregarG/{glucosa}/{hora}/{fecha}/{periodo}/{actividad}/{medicacion}/{recordatorio}/{nota}/{idUsuario}', ['uses' => 'GlucosaController@agregarG']);
+Route::get('ultimaGlucosa/{idUsuario}', ['uses' => 'GlucosaController@ultimaGlucosa']);
+Route::get('promedioGlucosa/{idUsuario}', ['uses' => 'GlucosaController@glucosaPromedio']);
+Route::get('glucosaAvgUlt/{idUsuario}', ['uses' => 'GlucosaController@glucosaAvgUlt']);
 
 //PESO
 Route::get('agregarP/{peso}/{hora}/{fecha}/{notas}/{idUsuario}',['uses'=> 'PesoController@agregarP']);
