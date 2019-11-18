@@ -10,6 +10,7 @@ Route::get('/', function () {
 //USUARIOS
 Route::get('login/{email}/{contra}', ['uses' => 'UsuarioController@login']);
 Route::get('registro/{nombre}/{telefono}/{email}/{contra}/{sexo}/{tipoDiab}/{fechaNac}', ['uses' => 'UsuarioController@registrar']);
+Route::get('perfil/{idUsuario}', ['uses' => 'UsuarioController@perfil']);
 
 //GLUCOSA
 Route::get('agregarG/{glucosa}/{hora}/{fecha}/{periodo}/{actividad}/{medicacion}/{recordatorio}/{nota}/{idUsuario}', ['uses' => 'GlucosaController@agregarG']);
@@ -22,6 +23,7 @@ Route::get('mostrarG/{idUsuario}', ['uses' => 'GlucosaController@mostrarG']);
 Route::get('agregarP/{peso}/{hora}/{fecha}/{notas}/{idUsuario}',['uses'=> 'PesoController@agregarP']);
 Route::get('mostrarP/{idUsuario}',['uses'=> 'PesoController@mostrarP']);
 Route::get('mostrarPEst/{idUsuario}',['uses'=> 'PesoController@mostrarPEst']);
+Route::get('ultimoP/{idUsuario}',['uses'=> 'PesoController@ultimoP']);
 
 //PRESION ARTERIAL
 Route::get('agregarPA/{sistolica}/{diastolica}/{pulso}/{fecha}/{hora}/{recordatorio}/{nota}/{idUsuario}',['uses'=> 'PresionArterialController@agregarPA']);

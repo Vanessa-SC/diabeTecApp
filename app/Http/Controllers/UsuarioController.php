@@ -69,4 +69,15 @@ class UsuarioController extends Controller
         }
     }
 
+    public function perfil($idUsuario){
+        try{
+            $usuario = Usuario::where('idUsuario',$idUsuario)->first();
+            echo $usuario;
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('estado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
 }

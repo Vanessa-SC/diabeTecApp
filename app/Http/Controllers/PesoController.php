@@ -73,4 +73,17 @@ class PesoController extends Controller
         }
     }
 
+    public function ultimoP($idUsuario){
+        try{
+            $pesos = Peso::where('idUsuario','=',$idUsuario)
+            ->OrderBy('idUsuario', 'DESC')
+            ->first();
+            echo $pesos;
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('resultado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
 }
