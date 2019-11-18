@@ -67,6 +67,7 @@ class GlucosaController extends Controller
             $promedio = DB::table('glucosa')
             ->where('idUsuario','=',$idUsuario)
             ->avg('toma');
+            $prom = round($promedio);
             $ultima = DB::table('glucosa')
             ->select('toma as ultima')
             ->where('idUsuario','=',$idUsuario)
@@ -74,7 +75,7 @@ class GlucosaController extends Controller
             ->pluck('ultima')
             ->first();
 
-            $arr = array('promedio' => $promedio,'ultima' => $ultima);
+            $arr = array('promedio' => $prom,'ultima' => $ultima);
             echo json_encode($arr);
            // echo $promedio;
         } catch(\Illuminate\Database\QueryException $e){

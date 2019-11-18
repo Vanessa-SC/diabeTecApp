@@ -12,7 +12,7 @@ class PesoController extends Controller
     public function agregarP($peso,$hora1,$fecha1,$notas,$idUsuario){
         try{
             $oldFecha = substr($fecha1, 0, -6);
-            $fecha = date('Y-m-d', strtotime($oldFecha));
+            $fecha = date('d/m/Y', strtotime($oldFecha));
             $oldHora = substr($hora1, 0, -6);
             $hora = date('h:i A', strtotime($oldHora));
             
@@ -50,6 +50,8 @@ class PesoController extends Controller
             ->where('idUsuario','=',$idUsuario)
             ->avg('peso');
 
+            $prom = round($promedio);
+
             $max = DB::table('peso')
             ->where('idUsuario','=',$idUsuario)
             ->max('peso');
@@ -62,7 +64,7 @@ class PesoController extends Controller
             if($max == null){ $max = 0;}
             if($min == null){ $min = 0;}
 
-            $arr = array('pesoProm' => $promedio,'pesoMax' => $max,'pesoMin'=>$min);
+            $arr = array('pesoProm' => $prom,'pesoMax' => $max,'pesoMin'=>$min);
             echo json_encode($arr);
         } catch(\Illuminate\Database\QueryException $e){
             $errorCore = $e->getMessage();
