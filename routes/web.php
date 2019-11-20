@@ -37,4 +37,7 @@ Route::get('mostrarM/{idUsuario}', ['uses' => 'MedicamentoController@mostrarM'])
 //PRUEBAS
 Route::get('fecha/{idUsuario}', ['uses' => 'MedicamentoController@fecha']);
 
+//DESACTIVAR CUENTA
+Route::get('desactivarCuenta/{email}', ['uses' => 'UsuarioController@desactivarCuenta']);
+Route::get('desactivarCuentaxID', ['uses' => 'UsuarioController@desactivarCuentaxID']);
 

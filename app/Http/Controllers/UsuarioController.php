@@ -79,5 +79,41 @@ class UsuarioController extends Controller
             echo json_encode($arr);
         }
     }
+    public function desactivarCuentaxID(){
+        echo $idUsuario =  request()->session()->get('IdUsuario');
+         // Session::get('idUser')
+         try {
+             $update = DB::table('usuario')
+                         ->where('idUsuario', $IDuser)
+                         ->update(['estatus' => -1]);
+            echo json_encode($update);
+            return Redirect::to('http://192.168.1.70:8100/login');
+          }catch(\Illuminate\Database\QueryException $e){
+             $errorCore = $e->getMessage();
+             $arr = array('estado' => $errorCore);
+             echo json_encode($arr);
+         }
+     }
+    public function desactivarCuenta($email){
+        try {
+          
+                $update = DB::table('usuario')
+                ->where('email', $email)
+                ->update(['estatus' => -1]);
+
+                if($update == 0){
+                    $arr = array('email'=> 'no existe');
+                    echo json_encode($arr);
+                } else {
+                    $arr = array('email'=> $email);
+                    echo json_encode($arr);
+                }
+
+        }catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('estado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
 
 }
