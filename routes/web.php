@@ -10,6 +10,7 @@ Route::get('/', function () {
 //USUARIOS
 Route::get('login/{email}/{contra}', ['uses' => 'UsuarioController@login']);
 Route::get('registro/{nombre}/{telefono}/{email}/{contra}/{sexo}/{tipoDiab}/{fechaNac}', ['uses' => 'UsuarioController@registrar']);
+Route::get('mostrarU/{idUsuario}', ['uses' => 'UsuarioController@mostrarU']);
 
 //GLUCOSA
 Route::get('agregarG/{glucosa}/{hora}/{fecha}/{periodo}/{actividad}/{medicacion}/{recordatorio}/{nota}/{idUsuario}', ['uses' => 'GlucosaController@agregarG']);

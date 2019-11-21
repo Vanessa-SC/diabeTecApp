@@ -44,6 +44,17 @@ class UsuarioController extends Controller
         } 
     }
 
+    public function mostrarU($idUsuario){
+        try{
+            $usuarios = Usuario::where('idUsuario','=',$idUsuario)->get();
+            echo $usuarios;
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('resultado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
     public function registrar($nombre,$telefono,$email,$contra,$sexo,$tipoDiab,$fechaNac){
         try{
             $buscar = Usuario::where('email', $email)->first();
