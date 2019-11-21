@@ -11,6 +11,7 @@ Route::get('/', function () {
 Route::get('login/{email}/{contra}', ['uses' => 'UsuarioController@login']);
 Route::get('registro/{nombre}/{telefono}/{email}/{contra}/{sexo}/{tipoDiab}/{fechaNac}', ['uses' => 'UsuarioController@registrar']);
 Route::get('perfil/{idUsuario}', ['uses' => 'UsuarioController@perfil']);
+Route::get('desactivar/{email}', ['uses' => 'UsuarioController@desactivarCuenta']);
 
 //GLUCOSA
 Route::get('agregarG/{glucosa}/{hora}/{fecha}/{periodo}/{actividad}/{medicacion}/{recordatorio}/{nota}/{idUsuario}', ['uses' => 'GlucosaController@agregarG']);
@@ -36,8 +37,4 @@ Route::get('mostrarM/{idUsuario}', ['uses' => 'MedicamentoController@mostrarM'])
 
 //PRUEBAS
 Route::get('fecha/{idUsuario}', ['uses' => 'MedicamentoController@fecha']);
-
-//DESACTIVAR CUENTA
-Route::get('desactivarCuenta/{email}', ['uses' => 'UsuarioController@desactivarCuenta']);
-Route::get('desactivarCuentaxID', ['uses' => 'UsuarioController@desactivarCuentaxID']);
 

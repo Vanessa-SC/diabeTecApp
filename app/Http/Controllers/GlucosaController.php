@@ -75,6 +75,8 @@ class GlucosaController extends Controller
             ->pluck('ultima')
             ->first();
 
+            if($ultima==null){$ultima=="0";}
+
             $arr = array('promedio' => $prom,'ultima' => $ultima);
             echo json_encode($arr);
            // echo $promedio;
