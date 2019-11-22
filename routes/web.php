@@ -25,6 +25,8 @@ Route::get('agregarP/{peso}/{hora}/{fecha}/{notas}/{idUsuario}',['uses'=> 'PesoC
 Route::get('mostrarP/{idUsuario}',['uses'=> 'PesoController@mostrarP']);
 Route::get('mostrarPEst/{idUsuario}',['uses'=> 'PesoController@mostrarPEst']);
 Route::get('ultimoP/{idUsuario}',['uses'=> 'PesoController@ultimoP']);
+Route::get('peso/{idPeso}', ['uses' => 'PesoController@peso']);
+Route::get('updateP/{idPeso}/{peso}/{hora}/{fecha}/{nota}', ['uses' => 'PesoController@updateP']);
 
 //PRESION ARTERIAL
 Route::get('agregarPA/{sistolica}/{diastolica}/{pulso}/{fecha}/{hora}/{recordatorio}/{nota}/{idUsuario}',['uses'=> 'PresionArterialController@agregarPA']);

@@ -42,6 +42,41 @@ class PesoController extends Controller
             echo json_encode($arr);
         }
     }
+    
+    public function peso($idPeso){
+        try{
+            $pesos = Peso::where('idPeso',$idPeso)->first();
+            echo $pesos;
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('resultado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
+    public function updateP($idPeso,$peso,$hora,$fecha,$nota){
+        try{
+            $pesos = Peso::find($idPeso);
+            
+                $pesos->peso = $peso;
+                $pesos->hora = $hora;
+                $pesos->fecha = $fecha;
+                $pesos->nota = $nota;
+                $pesos->save();
+                
+                if (empty($pesos)){
+                    $arr = array('estado'=>'error');
+                    echo json_encode($arr);
+                } else {
+                    echo $pesos;
+                }
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('resultado' => $errorCore);
+
+            echo json_encode($arr);
+        }
+    }
 
     public function mostrarPEst($idUsuario){
         try{
