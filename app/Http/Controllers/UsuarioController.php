@@ -103,4 +103,32 @@ class UsuarioController extends Controller
         }
     }
 
+    public function updateU($nombre,$telefono,$sexo,$tipoDiabetes,$estatura,$idUsuario){
+        try{
+            $usuario = Usuarios::find($idUsuario);
+            
+            $usuario->nombre = $nombre;
+            $usuario->telefono = $telefono;
+            $usuario->sexo = $sexo;
+            $usuario->tipoDiabetes = $tipoDiabetes;
+            $usuario->estatura = $estatura;
+            $usuario->nombre = $nombre;
+            $usuario->save();
+            //echo $usuario;
+
+           if (empty($usuario)){
+                $arr = array('resultado'=>'error');
+                echo json_encode($arr);
+            } else {
+                $arr = array('resultado' => 'actualizado');
+                 echo json_encode($arr);
+            }
+
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('estado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
 }

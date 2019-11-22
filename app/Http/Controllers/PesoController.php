@@ -104,4 +104,35 @@ class PesoController extends Controller
         }
     }
 
+    public function updateP($peso,$hora1,$fecha1,$nota,$idUsuario,$idPeso){
+        try{
+            $oldHora = substr($hora1, 0, -6);
+            $hora = date('h:i A', strtotime($oldHora));
+            $oldfecha = substr($fecha1, 0, -6);
+            $fecha = date('h:i A', strtotime($oldfecha));
+
+            $Peso = Peso::where('idUsuario',$idUsuario)->where('idPeso',$idPeso);
+            
+            $Peso->peso = $peso;
+            $Peso->hora = $hora;
+            $Peso->fecha = $fecha;
+            $Peso->nota = $nota;
+            $Peso->save();
+            //echo $Peso;
+
+           if (empty($Peso)){
+                $arr = array('resultado'=>'error');
+                echo json_encode($arr);
+            } else {
+                $arr = array('resultado' => 'actualizado');
+                 echo json_encode($arr);
+            }
+
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('estado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
 }

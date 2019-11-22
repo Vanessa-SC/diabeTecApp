@@ -116,4 +116,35 @@ class GlucosaController extends Controller
         }
     }
 
+    public function updateG($glucosa,$hora1,$fecha1,$nota,$idUsuario,$idGlucosa){
+        try{
+            $oldfecha = substr($fecha1, 0, -6);
+            $fecha = date('h:i A', strtotime($oldfecha));
+            $oldHora = substr($hora1, 0, -6);
+            $hora = date('h:i A', strtotime($oldHora));
+
+            $Glucosa = Glucosa::where('idUsuario',$idUsuario)->where('idGlucosa',$idGlucosa);
+            
+            $Glucosa->toma = $glucosa;
+            $Glucosa->hora = $hora;
+            $Glucosa->fecha = $fecha;
+            $Glucosa->nota = $nota;
+            $Glucosa->save();
+            //echo $Glucosa;
+
+           if (empty($Glucosa)){
+                $arr = array('resultado'=>'error');
+                echo json_encode($arr);
+            } else {
+                $arr = array('resultado' => 'actualizado');
+                 echo json_encode($arr);
+            }
+
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('estado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
 }

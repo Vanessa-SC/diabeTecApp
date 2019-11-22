@@ -65,4 +65,29 @@ class PresionArterialController extends Controller
         }
     }
 
+    public function updatePA($sistolica,$diastolica,$pulso,$nota,$idUsuario,$idPresionArterial){
+        try{
+            $PresionArterial = PresionArterial::where('idUsuario',$idUsuario)->where('id$idPresionArterial',$idPresionArterial);
+            
+            $PresionArterial->sistolica = $sistolica;
+            $PresionArterial->diastolica = $diastolica;
+            $PresionArterial->pulso = $pulso;
+            $PresionArterial->nota = $nota;
+            $PresionArterial->save();
+            //echo $PresionArterial;
+
+           if (empty($PresionArterial)){
+                $arr = array('resultado'=>'error');
+                echo json_encode($arr);
+            } else {
+                $arr = array('resultado' => 'actualizado');
+                 echo json_encode($arr);
+            }
+
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('estado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
 }

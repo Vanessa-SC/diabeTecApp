@@ -86,4 +86,34 @@ class MedicamentoController extends Controller
         }
     }
 
+    public function updateM($dosis,$descripcion,$hora1,$nota,$idUsuario,$idMedicamento){
+        try{
+            $oldHora = substr($hora1, 0, -6);
+            $hora = date('h:i A', strtotime($oldHora));
+
+            $Medicamento = Medicamento::where('idUsuario',$idUsuario)->where('idMedicamento',$idMedicamento);
+            
+            $Medicamento->dosis = $dosis;
+            $Medicamento->descripcion = $descripcion;
+            $Medicamento->hora = $hora;
+            $Medicamento->nota = $nota;
+            $Medicamento->save();
+            //echo $Medicamento;
+
+           if (empty($Medicamento)){
+                $arr = array('resultado'=>'error');
+                echo json_encode($arr);
+            } else {
+                $arr = array('resultado' => 'actualizado');
+                 echo json_encode($arr);
+            }
+
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('estado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
+
 }
