@@ -38,3 +38,4 @@ Route::get('mostrarM/{idUsuario}', ['uses' => 'MedicamentoController@mostrarM'])
 //PRUEBAS
 Route::get('fecha/{idUsuario}', ['uses' => 'MedicamentoController@fecha']);
 
+ 
