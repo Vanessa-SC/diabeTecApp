@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Glucosa;
 use DB;
 
+
 class GlucosaController extends Controller
 {
     //,glucosa,hora,fecha,periodo,actividad,medicacion,recordatorio,notas,idUsuario

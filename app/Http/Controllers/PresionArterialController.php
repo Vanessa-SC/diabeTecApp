@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\PresionArterial;
 use DB;
 
+
 class PresionArterialController extends Controller
 {
     //,sistolica,diastolica,pulso,fecha,hora,recordatorio,notas,,idUsuario

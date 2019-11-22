@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Peso;
 use DB;
 
+
 class PesoController extends Controller
 {
     //peso,hora,fecha,notas,,idUsuario
