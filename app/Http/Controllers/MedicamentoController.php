@@ -67,4 +67,22 @@ class MedicamentoController extends Controller
         echo $hora;
     }
 
+    public function eliminarM($idUsuario,$idMedicamento){
+        try{
+            $eliminar = DB::delete('delete from medicamento where idUsuario = ? and idMedicamento = ?', [$idUsuario,$idMedicamento]);
+
+            if($eliminar == 1){
+                $arr = array('resultado' => "eliminado");
+                echo json_encode($arr);
+            } else {
+                $arr = array('resultado' => "no eliminado");
+                echo json_encode($arr);
+            }
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('resultado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
 }
