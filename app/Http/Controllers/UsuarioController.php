@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Usuario;
+use DB;
 
 class UsuarioController extends Controller
 {
@@ -44,23 +45,14 @@ class UsuarioController extends Controller
         } 
     }
 
-    public function mostrarU($idUsuario){
-        try{
-            $usuarios = Usuario::where('idUsuario','=',$idUsuario)->get();
-            echo $usuarios;
-        } catch(\Illuminate\Database\QueryException $e){
-            $errorCore = $e->getMessage();
-            $arr = array('resultado' => $errorCore);
-            echo json_encode($arr);
-        }
-    }
-
     public function registrar($nombre,$telefono,$email,$contra,$sexo,$tipoDiab,$fechaNac){
         try{
+            $oldFecha = substr($fechaNac, 0, -6);
+            $fecha = date('Y-m-d', strtotime($oldFecha));
             $buscar = Usuario::where('email', $email)->first();
             //nombre'telefono'email'contrasena'sexo''tipoDiabetes'fecha_nac');
             if($buscar == null){
-                $usuario = Usuario::insert(['nombre'=>$nombre, 'telefono'=>$telefono,'email'=>$email,'contrasena'=>$contra,'sexo'=>$sexo,'tipoDiabetes'=>$tipoDiab,'fecha_nac'=>$fechaNac]);
+                $usuario = Usuario::insert(['nombre'=>$nombre, 'telefono'=>$telefono,'email'=>$email,'contrasena'=>$contra,'sexo'=>$sexo,'tipoDiabetes'=>$tipoDiab,'fecha_nac'=>$fecha,'estatus'=>'1']);
                 if($usuario == 1){
                     $arr = array('resultado' => "insertado");
                     echo json_encode($arr);
@@ -74,6 +66,37 @@ class UsuarioController extends Controller
                 }
 
         } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('estado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
+    public function perfil($idUsuario){
+        try{
+            $usuario = Usuario::where('idUsuario',$idUsuario)->first();
+            echo $usuario;
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('estado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+    
+    public function desactivarCuenta($email){
+        try {
+                $update = DB::table('usuario')
+                ->where('email', $email)
+                ->update(['estatus' => -1]);
+                if($update == 0){
+                    $arr = array('email'=> 'no desactivado');
+                    echo json_encode($arr);
+                } else {
+                    $arr = array('email'=> $email);
+                    echo json_encode($arr);
+                }
+
+        }catch(\Illuminate\Database\QueryException $e){
             $errorCore = $e->getMessage();
             $arr = array('estado' => $errorCore);
             echo json_encode($arr);
