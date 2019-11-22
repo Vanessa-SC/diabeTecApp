@@ -20,7 +20,6 @@ Route::get('ultimaGlucosa/{idUsuario}', ['uses' => 'GlucosaController@ultimaGluc
 Route::get('promedioGlucosa/{idUsuario}', ['uses' => 'GlucosaController@glucosaPromedio']);
 Route::get('glucosaAvgUlt/{idUsuario}', ['uses' => 'GlucosaController@glucosaAvgUlt']);
 Route::get('mostrarG/{idUsuario}', ['uses' => 'GlucosaController@mostrarG']);
-Route::get('eliminarG/{idUsuario}/{idGlucosa}', ['uses' => 'GlucosaController@eliminarG']);
 
 
 //PESO
@@ -28,19 +27,17 @@ Route::get('agregarP/{peso}/{hora}/{fecha}/{notas}/{idUsuario}',['uses'=> 'PesoC
 Route::get('mostrarP/{idUsuario}',['uses'=> 'PesoController@mostrarP']);
 Route::get('mostrarPEst/{idUsuario}',['uses'=> 'PesoController@mostrarPEst']);
 Route::get('ultimoP/{idUsuario}',['uses'=> 'PesoController@ultimoP']);
-Route::get('eliminarP/{idUsuario}/{idPeso}', ['uses' => 'PesoController@eliminarP']);
+Route::get('peso/{idPeso}', ['uses' => 'PesoController@peso']);
+Route::get('updateP/{idPeso}/{peso}/{hora}/{fecha}/{nota}', ['uses' => 'PesoController@updateP']);
 
 
 //PRESION ARTERIAL
 Route::get('agregarPA/{sistolica}/{diastolica}/{pulso}/{fecha}/{hora}/{recordatorio}/{nota}/{idUsuario}',['uses'=> 'PresionArterialController@agregarPA']);
 Route::get('mostrarPA/{idUsuario}', ['uses' => 'PresionArterialController@mostrarPA']);
-Route::get('eliminarPA/{idUsuario}/{idPresionArterial}', ['uses' => 'PresionArterialController@eliminarPA']);
-
 
 //MEDICAMENTO
 Route::get('agregarM/{dosis}/{descripcion}/{hora}/{fecha}/{recordatorio}/{notas}/{idUsuario}',['uses'=> 'MedicamentoController@agregarM']);
 Route::get('mostrarM/{idUsuario}', ['uses' => 'MedicamentoController@mostrarM']);
-Route::get('eliminarM/{idUsuario}/{idMedicamento}', ['uses' => 'MedicamentoController@eliminarM']);
 
 
 //PRUEBAS
