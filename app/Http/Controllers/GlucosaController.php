@@ -99,4 +99,21 @@ class GlucosaController extends Controller
         }
     }
 
+    public function eliminarG($idUsuario,$idGlucosa){
+        try{
+            $eliminar = DB::delete('delete from glucosa where idUsuario = ? and idGlucosa = ?', [$idUsuario,$idGlucosa]);
+            if($eliminar == 1){
+                $arr = array('resultado' => "eliminado");
+                echo json_encode($arr);
+            } else {
+                $arr = array('resultado' => "no eliminado");
+                echo json_encode($arr);
+            }
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('resultado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\PresionArterial;
+use DB;
 
 
 class PresionArterialController extends Controller
@@ -39,6 +40,24 @@ class PresionArterialController extends Controller
         try{
             $presiones = PresionArterial::where('idUsuario','=',$idUsuario)->get();
             echo $presiones;
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCore = $e->getMessage();
+            $arr = array('resultado' => $errorCore);
+            echo json_encode($arr);
+        }
+    }
+
+    public function eliminarPA($idUsuario,$idPresionArterial){
+        try{
+            $eliminar = DB::delete('delete from presionarterial where idUsuario = ? and idPresionArterial = ?', [$idUsuario,$idPresionArterial]);
+
+            if($eliminar == 1){
+                $arr = array('resultado' => "eliminado");
+                echo json_encode($arr);
+            } else {
+                $arr = array('resultado' => "no eliminado");
+                echo json_encode($arr);
+            }
         } catch(\Illuminate\Database\QueryException $e){
             $errorCore = $e->getMessage();
             $arr = array('resultado' => $errorCore);
