@@ -103,18 +103,16 @@ class UsuarioController extends Controller
         }
     }
 
-    public function updateU($nombre,$telefono,$sexo,$tipoDiabetes,$estatura,$idUsuario){
+    public function updateU($nombre,$telefono,$estatura,$idUsuario){
         try{
-            $usuario = Usuarios::find($idUsuario);
+            $usuario = Usuario::find($idUsuario);
+            //echo $usuario;
             
             $usuario->nombre = $nombre;
             $usuario->telefono = $telefono;
-            $usuario->sexo = $sexo;
-            $usuario->tipoDiabetes = $tipoDiabetes;
             $usuario->estatura = $estatura;
             $usuario->nombre = $nombre;
             $usuario->save();
-            //echo $usuario;
 
            if (empty($usuario)){
                 $arr = array('resultado'=>'error');
