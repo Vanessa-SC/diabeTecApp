@@ -67,14 +67,11 @@ class PresionArterialController extends Controller
 
     public function updatePA($sistolica,$diastolica,$pulso,$nota,$idUsuario,$idPresionArterial){
         try{
-            $PresionArterial = PresionArterial::where('idUsuario',$idUsuario)->where('id$idPresionArterial',$idPresionArterial);
             
-            $PresionArterial->sistolica = $sistolica;
-            $PresionArterial->diastolica = $diastolica;
-            $PresionArterial->pulso = $pulso;
-            $PresionArterial->nota = $nota;
-            $PresionArterial->save();
-            //echo $PresionArterial;
+            DB::update('update presionarterial set sistolica = ? , diastolica = ?, pulso = ?, nota = ? where idUsuario = ? and idPresionArterial = ?', [$sistolica,$diastolica,$pulso,$nota,$idUsuario,$idPresionArterial]);
+
+            $PresionArterial = PresionArterial::find($idPresionArterial);
+            //echo ($PresionArterial);
 
            if (empty($PresionArterial)){
                 $arr = array('resultado'=>'error');

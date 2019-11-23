@@ -123,14 +123,10 @@ class GlucosaController extends Controller
             $oldHora = substr($hora1, 0, -6);
             $hora = date('h:i A', strtotime($oldHora));
 
-            $Glucosa = Glucosa::where('idUsuario',$idUsuario)->where('idGlucosa',$idGlucosa);
-            
-            $Glucosa->toma = $glucosa;
-            $Glucosa->hora = $hora;
-            $Glucosa->fecha = $fecha;
-            $Glucosa->nota = $nota;
-            $Glucosa->save();
-            //echo $Glucosa;
+            DB::update('update glucosa set toma = ? , hora = ?, fecha = ?, nota = ? where idUsuario = ? and idGlucosa = ?', [$glucosa,$hora,$fecha,$nota,$idUsuario,$idGlucosa]);
+
+            $Glucosa = Glucosa::find($idGlucosa);
+            //echo ($Glucosa);
 
            if (empty($Glucosa)){
                 $arr = array('resultado'=>'error');

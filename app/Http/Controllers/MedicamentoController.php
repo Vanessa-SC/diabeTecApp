@@ -88,17 +88,13 @@ class MedicamentoController extends Controller
 
     public function updateM($dosis,$descripcion,$hora1,$nota,$idUsuario,$idMedicamento){
         try{
-            $oldHora = substr($hora1, 0, -6);
-            $hora = date('h:i A', strtotime($oldHora));
+           $oldHora = substr($hora1, 0, -6);
+           $hora = date('h:i A', strtotime($oldHora));
 
-            $Medicamento = Medicamento::where('idUsuario',$idUsuario)->where('idMedicamento',$idMedicamento);
-            
-            $Medicamento->dosis = $dosis;
-            $Medicamento->descripcion = $descripcion;
-            $Medicamento->hora = $hora;
-            $Medicamento->nota = $nota;
-            $Medicamento->save();
-            //echo $Medicamento;
+            DB::update('update medicamento set dosis = ? , descripcion = ?, hora = ?, nota = ? where idUsuario = ? and idMedicamento = ?', [$dosis,$descripcion,$hora,$nota,$idUsuario,$idMedicamento]);
+
+            $Medicamento = Medicamento::find($idMedicamento);
+            //echo ($Medicamento);
 
            if (empty($Medicamento)){
                 $arr = array('resultado'=>'error');

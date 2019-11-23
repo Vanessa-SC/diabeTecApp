@@ -45,7 +45,7 @@ Route::get('updatePA/{sistolica}/{diastolica}/{pulso}/{nota}/{idUsuario}/{idPA}'
 Route::get('agregarM/{dosis}/{descripcion}/{hora}/{fecha}/{recordatorio}/{notas}/{idUsuario}',['uses'=> 'MedicamentoController@agregarM']);
 Route::get('mostrarM/{idUsuario}', ['uses' => 'MedicamentoController@mostrarM']);
 Route::get('eliminarM/{idUsuario}/{idMedicamento}', ['uses' => 'MedicamentoController@eliminarM']);
-Route::get('updateM/{dosis}/{descripcion}/{hora}/{fecha}/{notas}/{idUsuario}/{idMedicamento}',['uses'=> 'MedicamentoController@updateM']);
+Route::get('updateM/{dosis}/{descripcion}/{hora}/{notas}/{idUsuario}/{idMedicamento}',['uses'=> 'MedicamentoController@updateM']);
 
 
 //PRUEBAS

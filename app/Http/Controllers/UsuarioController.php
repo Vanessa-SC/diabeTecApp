@@ -107,6 +107,7 @@ class UsuarioController extends Controller
         try{
             $usuario = Usuario::find($idUsuario);
             //echo $usuario;
+        
             
             $usuario->nombre = $nombre;
             $usuario->telefono = $telefono;

@@ -111,14 +111,10 @@ class PesoController extends Controller
             $oldfecha = substr($fecha1, 0, -6);
             $fecha = date('h:i A', strtotime($oldfecha));
 
-            $Peso = Peso::where('idUsuario',$idUsuario)->where('idPeso',$idPeso);
-            
-            $Peso->peso = $peso;
-            $Peso->hora = $hora;
-            $Peso->fecha = $fecha;
-            $Peso->nota = $nota;
-            $Peso->save();
-            //echo $Peso;
+            DB::update('update peso set peso = ? , hora = ?, fecha = ?, nota = ? where idUsuario = ? and idPeso = ?', [$peso,$hora,$fecha,$nota,$idUsuario,$idPeso]);
+
+            $Peso = Peso::find($idPeso);
+            //echo ($Peso);
 
            if (empty($Peso)){
                 $arr = array('resultado'=>'error');
