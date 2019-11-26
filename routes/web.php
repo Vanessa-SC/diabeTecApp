@@ -31,21 +31,21 @@ Route::get('mostrarP/{idUsuario}',['uses'=> 'PesoController@mostrarP']);
 Route::get('mostrarPEst/{idUsuario}',['uses'=> 'PesoController@mostrarPEst']);
 Route::get('ultimoP/{idUsuario}',['uses'=> 'PesoController@ultimoP']);
 Route::get('eliminarP/{idUsuario}/{idPeso}', ['uses' => 'PesoController@eliminarP']);
-Route::get('updateP/{peso}/{hora}/{fecha}/{notas}/{idUsuario}/{idPeso}',['uses'=> 'PesoController@updateP']);
+Route::get('updateP/{peso}/{hora}/{fecha}/{idUsuario}/{idPeso}',['uses'=> 'PesoController@updateP']);
 
 
 //PRESION ARTERIAL
 Route::get('agregarPA/{sistolica}/{diastolica}/{pulso}/{fecha}/{hora}/{recordatorio}/{nota}/{idUsuario}',['uses'=> 'PresionArterialController@agregarPA']);
 Route::get('mostrarPA/{idUsuario}', ['uses' => 'PresionArterialController@mostrarPA']);
 Route::get('eliminarPA/{idUsuario}/{idPresionArterial}', ['uses' => 'PresionArterialController@eliminarPA']);
-Route::get('updatePA/{sistolica}/{diastolica}/{pulso}/{nota}/{idUsuario}/{idPA}',['uses'=> 'PresionArterialController@updatePA']);
+Route::get('updatePA/{sistolica}/{diastolica}/{pulso}/{fecha}/{hora}/{idUsuario}/{idPA}',['uses'=> 'PresionArterialController@updatePA']);
 
 
 //MEDICAMENTO
 Route::get('agregarM/{dosis}/{descripcion}/{hora}/{fecha}/{recordatorio}/{notas}/{idUsuario}',['uses'=> 'MedicamentoController@agregarM']);
 Route::get('mostrarM/{idUsuario}', ['uses' => 'MedicamentoController@mostrarM']);
 Route::get('eliminarM/{idUsuario}/{idMedicamento}', ['uses' => 'MedicamentoController@eliminarM']);
-Route::get('updateM/{dosis}/{descripcion}/{hora}/{fecha}/{notas}/{idUsuario}/{idMedicamento}',['uses'=> 'MedicamentoController@updateM']);
+Route::get('updateM/{descripcion}/{dosis}/{hora}/{idUsuario}/{idMedicamento}',['uses'=> 'MedicamentoController@updateM']);
 
 
 //PRUEBAS

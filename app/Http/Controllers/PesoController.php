@@ -104,23 +104,22 @@ class PesoController extends Controller
         }
     }
 
-    public function updateP($peso,$hora1,$fecha1,$nota,$idUsuario,$idPeso){
+    public function updateP($peso,$hora1,$fecha1,$idUsuario,$idPeso){
         try{
-            $oldHora = substr($hora1, 0, -6);
+            $oldHora = substr($hora1, 0);
             $hora = date('h:i A', strtotime($oldHora));
-            $oldfecha = substr($fecha1, 0, -6);
-            $fecha = date('h:i A', strtotime($oldfecha));
+            $oldfecha = substr($fecha1, 0);
+            $fecha = date('Y-m-d', strtotime($oldfecha));
 
             $Peso = Peso::where('idUsuario',$idUsuario)->where('idPeso',$idPeso);
             
-            $Peso->peso = $peso;
-            $Peso->hora = $hora;
-            $Peso->fecha = $fecha;
-            $Peso->nota = $nota;
-            $Peso->save();
+            $actualizar = DB::update('update peso set peso = ?,hora = ?, fecha = ? where idUsuario = ? and idPeso = ?', [$peso,$hora,$fecha,$idUsuario,$idPeso]);
+
+            //echo $actualizar;
+            
             //echo $Peso;
 
-           if (empty($Peso)){
+           if ($actualizar != 1){
                 $arr = array('resultado'=>'error');
                 echo json_encode($arr);
             } else {

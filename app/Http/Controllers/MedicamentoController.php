@@ -86,21 +86,14 @@ class MedicamentoController extends Controller
         }
     }
 
-    public function updateM($dosis,$descripcion,$hora1,$nota,$idUsuario,$idMedicamento){
+    public function updateM($descripcion,$dosis,$hora1,$idUsuario,$idMedicamento){
         try{
-            $oldHora = substr($hora1, 0, -6);
+            $oldHora = substr($hora1, 0);
             $hora = date('h:i A', strtotime($oldHora));
 
-            $Medicamento = Medicamento::where('idUsuario',$idUsuario)->where('idMedicamento',$idMedicamento);
-            
-            $Medicamento->dosis = $dosis;
-            $Medicamento->descripcion = $descripcion;
-            $Medicamento->hora = $hora;
-            $Medicamento->nota = $nota;
-            $Medicamento->save();
-            //echo $Medicamento;
+           $actualizar = DB::update('update medicamento set descripcion = ?, dosis = ?, hora = ? where idUSuario = ? and idMedicamento = ?', [$descripcion,$dosis,$hora1,$idUsuario,$idMedicamento]);
 
-           if (empty($Medicamento)){
+           if ($actualizar != 1){
                 $arr = array('resultado'=>'error');
                 echo json_encode($arr);
             } else {
