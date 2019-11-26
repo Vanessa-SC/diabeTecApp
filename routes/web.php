@@ -12,7 +12,7 @@ Route::get('login/{email}/{contra}', ['uses' => 'UsuarioController@login']);
 Route::get('registro/{nombre}/{telefono}/{email}/{contra}/{sexo}/{tipoDiab}/{fechaNac}', ['uses' => 'UsuarioController@registrar']);
 Route::get('perfil/{idUsuario}', ['uses' => 'UsuarioController@perfil']);
 Route::get('desactivar/{email}', ['uses' => 'UsuarioController@desactivarCuenta']);
-Route::get('updateU/{nombre}/{telefono}/{sexo}/{tipoDiab}/{estatura}/{idUsuario}', ['uses' => 'UsuarioController@updateU']);
+Route::get('updateU/{nombre}/{telefono}/{estatura}/{idUsuario}', ['uses' => 'UsuarioController@updateU']);
 
 
 //GLUCOSA
