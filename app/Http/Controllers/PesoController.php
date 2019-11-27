@@ -77,7 +77,7 @@ class PesoController extends Controller
     public function ultimoP($idUsuario){
         try{
             $pesos = Peso::where('idUsuario','=',$idUsuario)
-            ->OrderBy('idUsuario', 'DESC')
+            ->OrderBy('fecha', 'DESC')
             ->first();
             echo $pesos;
         } catch(\Illuminate\Database\QueryException $e){

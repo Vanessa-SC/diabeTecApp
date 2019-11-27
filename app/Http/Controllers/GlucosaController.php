@@ -118,8 +118,8 @@ class GlucosaController extends Controller
 
     public function updateG($glucosa,$hora1,$fecha1,$nota,$idUsuario,$idGlucosa){
         try{
-            $oldfecha = substr($fecha1, 0, -6);
-            $fecha = date('h:i A', strtotime($oldfecha));
+            $oldfecha = substr($fecha1, 0);
+            $fecha = date('Y-m-d', strtotime($oldfecha));
             $oldHora = substr($hora1, 0, -6);
             $hora = date('h:i A', strtotime($oldHora));
 
